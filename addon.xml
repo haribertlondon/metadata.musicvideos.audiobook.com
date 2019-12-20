@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="metadata.musicvideos.audiobook.com"
+       name="AudioBookScraper"
+       version="1.0.0"
+       provider-name="haribertlondon">
+  <requires>
+    <import addon="xbmc.metadata" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.metadata.scraper.musicvideos"
+             language="en"
+             library="tadb.xml"/>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="de">Audio Book Scraper</summary>
+    <summary lang="en">Audio Book Scraper</summary>
+    <description lang="de">Dieser Scraper lädt Audiobook Infos von goodreads.com herunter. Aufgrund diverser Suchschwierigkeiten erwartet der Scraper derzeit, dass Ordner/Dateinamen als 'Künstler - Songname' formatiert werden, andernfalls wird er keine Ergebnisse zurückliefern.</description>
+    <description lang="en">This scraper downloads Audiobook information from goodreads.com website. Due to various search difficulties the scraper currently expects the folder/filename to be formatted as 'artist - trackname' otherwise it will not return results. It is important to note the space between the hyphen.</description>
+    <license>GPL v2.0</license>
+    <forum>https://github.com/haribertlondon</forum>
+    <website>https://github.com/haribertlondon</website>
+    <email>https://github.com/haribertlondon</email>
+	<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+	</assets>
+	<news>First release</news>
+    <source>https://github.com/haribertlondon</source>
+  </extension>
+</addon>

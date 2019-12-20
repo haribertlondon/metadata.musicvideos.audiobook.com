@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scraper framework="1.0" date="2019-12-19">
+	<NfoUrl dest="3">
+		<RegExp input="$$1" output="&lt;url&gt;https://www.goodreads.com/search.xml?key=ymXkOV7e9MINMkKV5NTm0A&amp;q=\1" dest="3">
+			<expression></expression>
+		</RegExp>
+	</NfoUrl>
+	<CreateSearchUrl dest="3">
+       <RegExp input="$$1" output="&lt;url&gt;https://www.goodreads.com/search.xml?key=ymXkOV7e9MINMkKV5NTm0A&amp;q=\1&lt;/url&gt;" dest="3">
+           <expression></expression>
+       </RegExp>
+   </CreateSearchUrl>
+	
+	<GetSearchResults dest="8">
+		<RegExp input="$$3" output="&lt;results&gt;\1&lt;/results&gt;" dest="8">
+			<RegExp input="$$1" output="&lt;entity&gt;&lt;title&gt;\2&lt;/title&gt;&lt;url&gt;https://www.goodreads.com/book/show/\1.xml?key=ymXkOV7e9MINMkKV5NTm0A&lt;/url&gt;&lt;/entity&gt;" dest="3">
+				<expression repeat="yes">&lt;id type=&quot;integer&quot;&gt;([0-9]+)&lt;/id&gt;[^&lt;]*&lt;title&gt;([^&lt;]+)&lt;</expression>
+			</RegExp>
+			<expression noclean="1" />
+		</RegExp>
+	</GetSearchResults>
+
+
+	<GetDetails dest="3">
+		<RegExp input="$$5" output="&lt;details&gt;\1&lt;/details&gt;" dest="3">
+			<RegExp input="$$1" output="&lt;title&gt;\1&lt;/title&gt;" dest="5">
+				<expression fixchars="1" noclean="1">&lt;title&gt;([^&lt;]+)&lt;/title&gt;</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;artist&gt;\1&lt;/artist&gt;" dest="5+">
+				<expression fixchars="1" noclean="1">&lt;authors&gt;.*?&lt;name&gt;([^&lt;]+)&lt;/name&gt;</expression>
+			</RegExp>
+			<!--<RegExp input="$$1" output="&lt;album&gt;\1&lt;/album&gt;" dest="5+">
+				<expression fixchars="1" noclean="1">a-size-small a-link-normal authorNameLink[^&gt;]+([^&lt;]+)&lt;</expression>
+			</RegExp>-->
+			<RegExp input="$$1" output="&lt;plot&gt;\1&lt;/plot&gt;" dest="5+">
+				<expression fixchars="1" noclean="1">&lt;description&gt;(.*?)&lt;/description&gt;</expression>
+			</RegExp>
+			<!--<RegExp input="$$1" output="&lt;director&gt;\1&lt;/director&gt;" dest="5+">
+				<expression fixchars="1" noclean="1">strMusicVidDirector&quot;:&quot;(.*?)&quot;,&quot;</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;studio&gt;\1&lt;/studio&gt;" dest="5+">
+				<expression fixchars="1" noclean="1">strMusicVidCompany&quot;:&quot;(.*?)&quot;,&quot;</expression>
+			</RegExp>-->
+			<RegExp input="$$1" output="&lt;thumb&gt;\1&lt;/thumb&gt;" dest="5+">
+				<expression repeat="yes">&lt;image_url&gt;(.*?)&lt;/image_url&gt;</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;year&gt;\1&lt;/year&gt;" dest="5+">
+				<expression repeat="yes">&lt;publication_year&gt;(.*?)&lt;/publication_year&gt;</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;rating&gt;\1&lt;/rating&gt;" dest="5+">
+				<expression repeat="yes">&lt;average_rating&gt;(.*?)&lt;/average_rating&gt;</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;userrating&gt;\1&lt;/userrating&gt;" dest="5+">
+				<expression repeat="yes">&lt;average_rating&gt;(.*?)&lt;/average_rating&gt;</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;album&gt;\1&lt;/album&gt;" dest="5+">
+				<expression repeat="yes">&lt;average_rating&gt;(.*?)&lt;/average_rating&gt;</expression>
+			</RegExp>
+			<!--<RegExp input="$$1" output="&lt;chain function=&quot;GetTADBAlbumGenresByMBID&quot;&gt;\1&lt;/chain&gt;" dest="5+">
+				<expression fixchars="1" noclean="1">strMusicBrainzAlbumID&quot;:&quot;([^&quot;]*)&quot;</expression>
+			</RegExp>
+			<RegExp input="$$1" output="&lt;chain function=&quot;GetTADBAlbumDateByMBID&quot;&gt;\1&lt;/chain&gt;" dest="5+">
+				<expression fixchars="1" noclean="1">strMusicBrainzAlbumID&quot;:&quot;([^&quot;]*)&quot;</expression>
+			</RegExp>
+			<RegExp conditional="tadbalbumthumbs" input="$$1" output="&lt;chain function=&quot;GetTADBAlbumThumbsByMBID&quot;&gt;\1&lt;/chain&gt;" dest="5+">
+				<expression fixchars="1" noclean="1">strMusicBrainzAlbumID&quot;:&quot;([^&quot;]*)&quot;</expression>
+			</RegExp>
+			<RegExp conditional="fanarttvalbumthumbs" input="$$1" output="&lt;chain function=&quot;GetFanartTvAlbumThumbsByMBID&quot;&gt;\1&lt;/chain&gt;" dest="5+">
+				<expression fixchars="1" noclean="1">strMusicBrainzAlbumID&quot;:&quot;([^&quot;]*)&quot;</expression>
+			</RegExp>-->
+			<expression noclean="1"/>
+		</RegExp>
+	</GetDetails>
+</scraper>
